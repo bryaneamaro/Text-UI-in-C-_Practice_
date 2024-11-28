@@ -21,37 +21,42 @@ void display_mapFrame(char** map);
 void move_player(Player *player, char button );
 void print_info(Player *player, int arg);
 void print_gap(int i) ;
-int dungeon_prompt();
-void* prompt_to_func(int code);
+
+int dungeon_prompt();   /* Typical prompt used when player is in dungeon, returns player's choice as int  */
+void* prompt_to_func(int code); /* Takes int, returns appropriate function pointer, 
+    which will be used to run an event like- moving, attacking,  */
+int run_game(Player *player, int difficulty);
 
 
 int main() {
-    /* Create 2d array holding ENUMS */
     Player *user = malloc(sizeof(Player) );
 
-
+    /* Map of rooms player can traverse through */
     char map[4][7] = {  {' ', ' ', ' ', ' ', 'O', ' ', 'O'},
                         {' ', 'O', ' ', 'O', 'O', ' ', 'O'},
                         {' ', ' ', ' ', 'O', ' ', ' ', ' '},
                         {' ', 'O', ' ', ' ', ' ', 'O', ' '} };
 
+    /* Map of rooms used help layout basic functionality, simpler */
     char tutorial_map[5][1] = { {' '}, {' '}, {' '}, {' '}, {' '} };
 
     printf("\nNew Porgammig!!1\n\n");
-    
+
+    /* {This entire section initializes player info, make into separate function later} =============*/
     printf("Enter your character name: ");
     fgets(user->name, 20, stdin);
-    user->name[strlen(user->name) -1] = '\0';
-
+    user->name[strlen(user->name) -1] = '\0'; /* Eliminates trailing '\n' character  */
     print_gap(4);
-    printf("{%s}, length: %d\n\n", user->name, strlen(user->name));
+    /* printf("{%s}, length: %d\n\n", user->name, strlen(user->name)); */
 
     user->attack = 9;
     user->health = 40;
     user->currentRoom = &(tutorial_map[0][0]);
+    /* ==============================================================================================*/
+
     print_info(user, 0);
 
-    run_game;
+    run_game(user, 1);
     
 
     return 0;
@@ -62,7 +67,7 @@ int run_game(Player *player, int difficulty) {
         printf("What will you do!?\n");
         dungeon_prompt();
 
-        sleep(3);
+        
         printf("\nEnd of cycle!\n\n");
         printf("[][][][][][][][][][][][][][][][][][][][][][]\n\n");
     }
@@ -82,4 +87,13 @@ void print_gap(int i) {
     for( i ; i > 0 ; i-- ) {
         printf("\n");
     }
+}
+
+int dungeon_prompt() {
+    sleep(3);
+    return 0;
+}
+
+void* prompt_to_func(int code) {
+    return NULL;
 }

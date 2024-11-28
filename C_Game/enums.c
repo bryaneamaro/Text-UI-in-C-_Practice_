@@ -8,3 +8,10 @@ enum RoomType {
     ENTRACE,
     EXIT,
 };
+
+enum Difficulty {
+    TEST,
+    EASY,
+    NORMAL,
+    HARD
+};
