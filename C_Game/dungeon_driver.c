@@ -17,7 +17,8 @@ typedef struct player {
     int attack;
 } Player;
 
-void display_mapFrame(char** map);
+void display_mapFrame(char** map); /* Prints a 5*9 display of the Map */
+
 void move_player(Player *player, char button );
 void print_info(Player *player, int arg);
 void print_gap(int i) ;
@@ -97,3 +98,4 @@ int dungeon_prompt() {
 void* prompt_to_func(int code) {
     return NULL;
 }
+
